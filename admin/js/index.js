@@ -25,16 +25,22 @@ import courses from "../pages/courses.js"
 import users from "../pages/users.js"
 import settings from "../pages/settings.js"
 import notFound from "../pages/not-found.js"
+import chapter from "../pages/chapters.js"
+import topics from "../pages/topics.js"
 
 //Import js-file for routes
 
 import { dashboardFn } from "../pages/js/dashboard.js"
 import { usersFn } from "../pages/js/users.js"
 import { courseFunc,categoryFunc } from "../pages/js/courses.js"
+import { topicFunc } from "../pages/js/topics.js"
+import { chapterFunc } from "../pages/js/chapter.js"
 
 const routes={
     "/":dashboard,
     "/courses":courses,
+    "/topics":topics,
+    "/chapters":chapter,
     "/users":users,
     "/settings":settings
 }
@@ -59,6 +65,14 @@ const handleRouteChange = () => {
     {
         courseFunc()
         categoryFunc()
+    }
+    else if(path=="/topics")
+    {
+        topicFunc()
+    }
+    else if(path=="/chapters")
+    {
+        chapterFunc()
     }
 
 }

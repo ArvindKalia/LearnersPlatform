@@ -1,5 +1,4 @@
 let data = {};
-
 //check for data in local storage
 export const getDataFunc = () => {
     if (localStorage.getItem("data") != null) {
@@ -26,7 +25,7 @@ export const processImage = (img, array, index) => {
                 resolve("../../assets/images/avatar-1.svg")
             }
         }
-        else{
+        else {
             if (img.name) {
                 let freader = new FileReader();
                 freader.readAsDataURL(img);
@@ -51,12 +50,8 @@ export const registerFn = async (form, array, key, index) => {
     for (let data of formData.entries()) {
         let props = data[0]
         let value = data[1]
-
-        // console.log(props,value)
-
         let imgUrl = typeof (value) == "object" && await processImage(value, array, index)
 
-        // console.log(imgUrl)
 
         props == "course" && courses.push(value)
 
@@ -78,13 +73,11 @@ export const registerFn = async (form, array, key, index) => {
         swal("Data Inserted", "Successfully", "success")
     }
     else {
-        // console.log(array[index],tmp)
         array[index] = tmp
         data[key] = array
         localStorage.setItem("data", JSON.stringify(data))
         form.reset("")
         swal("Data Updated", "Successfully", "success")
-
     }
 }
 
@@ -109,10 +102,10 @@ export const formatDateFunc = (data, isTime) => {
 }
 
 //live data add in select tag
-export const createOptionsFunc = (data, el) => {
-    el.innerHTML = `<option value="">Choose Category</option>`
+export const createOptionsFunc = (data, el, key) => {
+    el.innerHTML = `<option value="">Choose ${key}</option>`
     data.forEach((item, index) => {
-        el.innerHTML += `<option value="${item.category}">${item.category}</option>`
+        el.innerHTML += `<option value="${item[key]}">${item[key]}</option>`
     })
 }
 

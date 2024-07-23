@@ -25,6 +25,12 @@ export const usersFn = () => {
         }, 100)
     }
 
+    btnClose.onclick=()=>{
+        allFormBtn[0].classList.remove("d-none")
+        allFormBtn[1].classList.add("d-none")
+        userForm.reset('')
+    }
+
     //read user code
     const readUser = () => {
         userList.innerHTML = ""
@@ -135,13 +141,9 @@ export const usersFn = () => {
     //delete code
     function deleteFunc (){
         let allDelBtn = userList.querySelectorAll(".del-btn")
-        // console.log(allDelBtn)
         allDelBtn.forEach((btn, index) => {
             btn.onclick = async () => {
-                // console.log(users)
-                // console.log(index)
                 let cnf =  await isConfirmFunc()
-                // console.log(cnf)
                 if(cnf)
                 {
                     users.splice(index,1)
@@ -185,8 +187,10 @@ export const usersFn = () => {
                 allFormBtn[1].classList.remove("d-none")
                 allFormBtn[1].onclick=()=>{
                     registerFn(userForm,users,"users",index)
-                    btnClose.click()
-                    window.location.reload()
+                    setTimeout(()=>{
+                        btnClose.click()
+                        readUser()
+                    },100)
                 }
             }
         })
