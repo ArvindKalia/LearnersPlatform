@@ -26,11 +26,24 @@ export const chapterFunc = () => {
     //register/add code
     chapterForm.onsubmit = (e) => {
         e.preventDefault()
-        registerFn(chapterForm, chapter, "chapter")
-        setTimeout(() => {
-            chapterCloseBtn.click()
-            readChapter()
-        }, 100)
+        let chapters = chapter.find((item) => {
+            return (
+                item.course[0] == allFormSelect[1].value &&
+                item.topic == allFormSelect[2].value &&
+                item.name == allFormInput[0].value.trim().toLocaleLowerCase()
+            )
+        })
+        if (chapters == undefined) {
+            registerFn(chapterForm, chapter, "chapter")
+            setTimeout(() => {
+                chapterCloseBtn.click()
+                readChapter(chapter)
+            }, 100)
+        }
+        else {
+            swal("Chapter Exist", "This chapter already exists!", "warning")
+        }
+
     }
 
     //show option in select tags
@@ -55,8 +68,17 @@ export const chapterFunc = () => {
         console.log(filter)
         createOptionsFunc(filter, chapterTopicSEl, "name")
     }
+    chapterTopicSEl.onchange = () => {
+        //this is to add an index number with id property so that we can use it after filter >>>
+        let tmp = chapter.map((item, index) => ({ ...item, id: index }))
+        let filter = tmp.filter((item) => (
+            item.course[0]==chapterCourseSEl.value &&
+            item.topic == chapterTopicSEl.value)
+        )
+        readChapter(filter)
+    }
 
-    chapterCloseBtn.onclick=()=>{
+    chapterCloseBtn.onclick = () => {
         allFormBtn[0].classList.remove("d-none")
         allFormBtn[1].classList.add("d-none")
         chapterForm.reset('')
@@ -65,13 +87,14 @@ export const chapterFunc = () => {
     //delete function
     const deleteChapter = () => {
         let allDelBtn = chapterList.querySelectorAll(".del-btn")
-        allDelBtn.forEach((btn, index) => {
+        allDelBtn.forEach((btn) => {
             btn.onclick = async () => {
+                let index = btn.getAttribute("index")
                 let cnf = await isConfirmFunc()
                 if (cnf) {
                     chapter.splice(index, 1)
                     updateDataFunc(chapter, "chapter")
-                    readChapter()
+                    readChapter(chapter)
                 }
             }
         })
@@ -79,8 +102,9 @@ export const chapterFunc = () => {
 
     const editChapter = () => {
         let allEditBtn = chapterList.querySelectorAll(".edit-btn")
-        allEditBtn.forEach((btn, index) => {
+        allEditBtn.forEach((btn) => {
             btn.onclick = () => {
+                let index = btn.getAttribute("index")
                 addchapterBtn.click()
                 let string = btn.getAttribute("data")
                 let data = JSON.parse(string)
@@ -93,20 +117,17 @@ export const chapterFunc = () => {
                 allFormBtn[0].classList.add("d-none")
                 allFormBtn[1].classList.remove("d-none")
                 allFormBtn[1].onclick = () => {
-                    registerFn(chapterForm, chapter, "chapter", index)
-                    setTimeout(() => {
-                        chapterCloseBtn.click()
-                        readChapter()
-                    }, 100)
+                    registerFn(chapterForm, chapter, "chapter", index, readChapter)
+                    chapterCloseBtn.click()
                 }
             }
         })
     }
 
     //read function
-    const readChapter = () => {
+    const readChapter = (array) => {
         chapterList.innerHTML = ""
-        chapter.forEach((item, index) => {
+        array.forEach((item, index) => {
             // console.log(item)
             let stringData = JSON.stringify(item)
             chapterList.innerHTML += `
@@ -124,10 +145,10 @@ export const chapterFunc = () => {
                 </td>
                 <td>${formatDateFunc(item.createdAt)}</td>
                 <td class="text-nowrap">
-                    <button data='${stringData}' class=" edit-btn text-green-300">
+                    <button index='${item.id ? item.id : index}' data='${stringData}' class=" edit-btn text-green-300">
                         <i class="fa-regular fa-pen-to-square"></i>
                     </button>
-                    <button class="del-btn text-red-300">
+                    <button index='${item.id ? item.id : index}' class="del-btn text-red-300">
                         <i class="fa-regular fa-trash-can"></i>
             </tr>
             `
@@ -135,7 +156,7 @@ export const chapterFunc = () => {
         deleteChapter()
         editChapter()
     }
-    readChapter()
+    readChapter(chapter)
 
 
 

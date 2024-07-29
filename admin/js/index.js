@@ -35,6 +35,7 @@ import { usersFn } from "../pages/js/users.js"
 import { courseFunc,categoryFunc } from "../pages/js/courses.js"
 import { topicFunc } from "../pages/js/topics.js"
 import { chapterFunc } from "../pages/js/chapter.js"
+import { settingFunc } from "../pages/js/settings.js"
 
 const routes={
     "/":dashboard,
@@ -73,6 +74,10 @@ const handleRouteChange = () => {
     else if(path=="/chapters")
     {
         chapterFunc()
+    }
+    else if(path=="/settings")
+    {
+        settingFunc()
     }
 
 }

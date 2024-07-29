@@ -41,7 +41,7 @@ export const processImage = (img, array, index) => {
 }
 
 //register data in form
-export const registerFn = async (form, array, key, index) => {
+export const registerFn = async (form, array, key, index, readDataFunc) => {
     let formData = new FormData(form)
     let courses = []
     let tmp = {
@@ -51,7 +51,6 @@ export const registerFn = async (form, array, key, index) => {
         let props = data[0]
         let value = data[1]
         let imgUrl = typeof (value) == "object" && await processImage(value, array, index)
-
 
         props == "course" && courses.push(value)
 
@@ -78,6 +77,7 @@ export const registerFn = async (form, array, key, index) => {
         localStorage.setItem("data", JSON.stringify(data))
         form.reset("")
         swal("Data Updated", "Successfully", "success")
+        readDataFunc(array)
     }
 }
 

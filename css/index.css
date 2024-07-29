@@ -1,0 +1,64 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    min-height: 100vh;
+}
+
+
+.page .not-found{
+    text-align: center;
+    background-color: white;
+    padding:40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    animation: flash;
+    animation-duration: 1s;
+}
+.page .not-found h1{
+    font-size: 96px;
+    margin: 20px 0;
+    color: #ff6f61;
+}
+.page .not-found p{
+    font-size: 24px;
+    margin: 20px 0;
+    color: #333;
+}
+.page .not-found button{
+
+    padding: 10px 20px;
+    font-size: 18px;
+    margin: 20px 0;
+    color: #fff;
+    background-color: #ff6f61;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.page .not-found button:hover{
+
+    padding: 10px 20px;
+    font-size: 18px;
+    margin: 20px 0;
+    color: #fff;
+    background-color: #ff6f61;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.register{
+    width: 100%;
+    height: 100%;
+}
+
+.login{
+    width: 100%;
+    height: 100%;
+}
+
+

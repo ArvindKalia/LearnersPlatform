@@ -14,21 +14,27 @@ export const categoryFunc = () => {
     let categoryAddBtn = courseEl.querySelector(".btn-category-add")
     let allFormInput = categoryForm.querySelectorAll("input")
     let allFormBtn = categoryForm.querySelectorAll("button")
+    let courseForm = courseEl.querySelector(".course-form")
+    let courseCategoryEl = courseForm.querySelector(".course-category")
+    let courseCatSEl = courseEl.querySelector(".course-cat-select")
 
     //store category code
     categoryForm.onsubmit = (e) => {
         e.preventDefault()
-        registerFn(categoryForm, category, "category")
-
-        setTimeout(() => {
-            formBtn.click()
-            readCategory(category)
-        }, 100)
-
-        let courseForm = courseEl.querySelector(".course-form")
-        let courseCategoryEl = courseForm.querySelector(".course-category")
-        //show category in select
-        createOptionsFunc(category, courseCategoryEl)
+        let cat = category.find((item) => item.category == allFormInput[0].value.trim().toLowerCase())
+        if (cat == undefined) {
+            registerFn(categoryForm, category, "category")
+            setTimeout(() => {
+                formBtn.click()
+                readCategory(category)
+                //show category in select
+            }, 100)
+            // createOptionsFunc(category, courseCategoryEl, "category")
+            // createOptionsFunc(category, courseCatSEl, "category")
+        }
+        else {
+            swal("Category Exist", "This category already exists!", "warning")
+        }
 
     }
 
@@ -41,6 +47,8 @@ export const categoryFunc = () => {
                     category.splice(index, 1)
                     updateDataFunc(category, "category")
                     readCategory(category)
+                    // createOptionsFunc(category, courseCategoryEl, "category")
+                    // createOptionsFunc(category, courseCatSEl, "category")
                 }
             }
         })
@@ -57,18 +65,19 @@ export const categoryFunc = () => {
                 allFormBtn[0].classList.add("d-none")
                 allFormBtn[1].classList.remove("d-none")
                 allFormBtn[1].onclick = () => {
-                    registerFn(categoryForm, category, "category", index)
-                    setTimeout(() => {
-                        readCategory()
-                        formBtn.click()
-                    }, 100)
+                    registerFn(categoryForm, category, "category", index, readCategory)
+                    formBtn.click()
                     // window.location.reload()
+                    // createOptionsFunc(category, courseCategoryEl, "category")
+                    // createOptionsFunc(category, courseCatSEl, "category")
+
                 }
             }
         })
     }
 
-    formBtn.onclick=()=>{
+    //reset form
+    formBtn.onclick = () => {
         allFormBtn[0].classList.remove("d-none")
         allFormBtn[1].classList.add("d-none")
         categoryForm.reset('')
@@ -76,9 +85,9 @@ export const categoryFunc = () => {
 
 
     //read category code
-    const readCategory = () => {
+    const readCategory = (array) => {
         categoryList.innerHTML = ""
-        category.forEach((item, index) => {
+        array.forEach((item, index) => {
             let stringData = JSON.stringify(item)
             categoryList.innerHTML += `
                 <tr>
@@ -102,13 +111,13 @@ export const categoryFunc = () => {
         deleteFunc()
         editFunc()
     }
-    readCategory()
+    readCategory(category)
 
 }
 
 
 
-export const courseFunc = () => { 
+export const courseFunc = () => {
     let data = getDataFunc()
     // let course = data ? data.course ? data.course : [] : []
     let course = data && data.course ? data.course : []
@@ -128,35 +137,51 @@ export const courseFunc = () => {
     //register code
     courseForm.onsubmit = (e) => {
         e.preventDefault()
-        registerFn(courseForm, course, "course")
-        setTimeout(async () => {
-            formBtn.click()
-            readCourse()
-        }, 100)
+        let courses = course.find((item) => item.name == allFormInput[1].value.trim().toLowerCase())
+        if (courses == undefined) {
+            registerFn(courseForm, course, "course")
+            setTimeout(() => {
+                formBtn.click()
+                readCourse(course)
+            }, 100)
+        }
+        else {
+            swal("Course Exist", "This course already exists!", "warning")
+        }
+
     }
 
     //show category in select
+    //filter data for modal form
     createOptionsFunc(category, courseCategoryEl, "category")
+    //filter data for page
     createOptionsFunc(category, courseCatSEl, "category")
+    courseCatSEl.onchange = () => {
+        //this is to add an index number with id property so that we can use it after filter >>>
+        let tmp = course.map((item, index) => ({ ...item, id: index }))
+        let filter = tmp.filter((item) => item.category == courseCatSEl.value)
+        readCourse(filter)
+    }
 
     //delete code
     function deleteFunc() {
         let allDelBtn = courseList.querySelectorAll(".del-btn")
         // console.log(allDelBtn)
-        allDelBtn.forEach((btn, index) => {
+        allDelBtn.forEach((btn) => {
             btn.onclick = async () => {
+                let index = btn.getAttribute("index")
                 let cnf = await isConfirmFunc()
                 if (cnf) {
                     course.splice(index, 1)
                     updateDataFunc(course, "courses")
-                    readCourse()
+                    readCourse(course)
                 }
             }
         })
     }
 
 
-    formBtn.onclick=()=>{
+    formBtn.onclick = () => {
         allFormBtn[0].classList.remove("d-none")
         allFormBtn[1].classList.add("d-none")
         courseForm.reset('')
@@ -165,9 +190,10 @@ export const courseFunc = () => {
 
     function editFunc() {
         let allEditBtn = courseList.querySelectorAll(".edit-btn")
-        allEditBtn.forEach((btn, index) => {
+        allEditBtn.forEach((btn) => {
             btn.onclick = () => {
                 addCourseBtn.click()
+                let index = btn.getAttribute("index")
                 let string = btn.getAttribute('data')
                 let data = JSON.parse(string)
                 allFormInput[1].value = data.name
@@ -181,12 +207,8 @@ export const courseFunc = () => {
                 allFormBtn[0].classList.add("d-none")
                 allFormBtn[1].classList.remove("d-none")
                 allFormBtn[1].onclick = () => {
-
-                    registerFn(courseForm, course, "courses", index)
-                    setTimeout(() => {
-                        formBtn.click()
-                        readCourse()
-                    }, 100)
+                    registerFn(courseForm, course, "courses", index, readCourse)
+                    formBtn.click()
                 }
             }
         })
@@ -194,9 +216,9 @@ export const courseFunc = () => {
 
 
     //read course code
-    const readCourse = () => {
+    const readCourse = (array) => {
         courseList.innerHTML = ""
-        course.forEach((item, index) => {
+        array.forEach((item, index) => {
             let stringData = JSON.stringify(item)
             // console.log(item)
             courseList.innerHTML += `
@@ -210,10 +232,10 @@ export const courseFunc = () => {
                 <td>${item.duration}</td>
                 <td>${formatDateFunc(item.createdAt)}</td>
                 <td class="text-nowrap">
-                    <button data='${stringData}' class=" edit-btn text-green-300">
+                    <button index='${item.id ? item.id : index}' data='${stringData}' class=" edit-btn text-green-300">
                         <i class="fa-regular fa-pen-to-square"></i>
                     </button>
-                    <button class="del-btn text-red-300">
+                    <button index='${item.id ? item.id : index}' class="del-btn text-red-300">
                         <i class="fa-regular fa-trash-can"></i>
             </tr>
             `
@@ -221,5 +243,5 @@ export const courseFunc = () => {
         deleteFunc()
         editFunc()
     }
-    readCourse()
+    readCourse(course)
 }

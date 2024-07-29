@@ -1,12 +1,154 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script>window.location.href="/admin/index.html"</script>
+    <!-- start css file link -->
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/animate.min.css">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="assets/css/tailwind.min.css">
+    <!-- end css file link -->
+    <!-- start js file link -->
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/sweetalert.min.js"></script>
+    <script src="assets/js/apexcharts.js"></script>
+    <!-- end js file link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <title>Admin Panel</title>
+
 </head>
+
 <body>
-    
+    <nav class="navbar navbar-expand-lg navbar-light shadow bg-white">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Just For Code</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
+                aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarScroll">
+                <ul class="navbar-nav ms-auto my-2 my-lg-0 navbar-nav-scroll mx-3" style="--bs-scroll-height: 100px;">
+
+                    <li class="menu-item nav-item">
+                        <a class="nav-link" href="#" tabindex="-1" aria-disabled="true">Home</a>
+                    </li>
+                    <li class="menu-item nav-item">
+                        <a class="nav-link" href="#/register" tabindex="-1" aria-disabled="true">Register</a>
+                    </li>
+                    <li class="menu-item nav-item">
+                        <a class="nav-link" href="#/login" tabindex="-1" aria-disabled="true">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <button class="btn rounded-full bg-red-100 text-red-600 position-relative">
+                            <i class="fa-regular fa-bell">
+                                <span
+                                    class="position-absolute top-0 start-0 translate-middle bg-danger badge rounded-pill">99+</span>
+                            </i> </button>
+                    </li>
+                </ul>
+                
+            </div>
+        </div>
+    </nav>
+    <div class="page flex justify-center p-4 min-h-screen bg-gray-100">
+       
+    </div>
+    <footer class="bg-white p-4">
+        <div class="grid md:grid-cols-4 gap-3">
+            <div class="flex flex-col gap-3">
+                <div class="flex items-center gap-x-4">
+                    <div>
+                    <img src="assets/images/logo.jpg" width="50" alt="">
+
+                    </div>
+                    <div class="text-center">
+                        <h1 class="font-bold text-2xl">Just For Code</h1>
+                        <p class="font-semibold">An international brand of coding</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-x-3">
+                    <button class="btn bg-blue-100 rounded-full text-blue-600">
+                        <i class="fa fa-phone"></i>
+                    </button>
+                    <p>5147133033</p>
+                    <p>5147133033</p>
+                </div>
+                <div class="flex items-center gap-x-3">
+                    <button class="btn bg-red-100 rounded-full text-red-600">
+                        <i class="fa-brands fa-youtube"></i>
+                    </button>
+                    <button class="btn bg-blue-200 rounded-full text-blue-600">
+                        <i class="fa-brands fa-linkedin"></i>
+                    </button>
+                    <button class="btn bg-green-100 rounded-full text-green-600">
+                        <i class="fa-brands fa-whatsapp"></i>
+                    </button>
+                </div>
+            </div>
+            <div>
+                <h1 class="font-semibold text-xl mb-3">NavLinks</h1>
+                <ul class="nav flex flex-col gap-y-3">
+                    <li class="nav-item">
+                        <a href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#">Register</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#">Notification</a>
+                    </li>
+                </ul>
+            </div>
+            <div>
+                <h1 class="font-semibold text-xl mb-3">Youtube Videos</h1>
+                <ul class="nav flex flex-col gap-y-3">
+                    <li class="nav-item">
+                        <a href="#">React.js</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#">Node.js</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#">Python</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#">Php</a>
+                    </li>
+                </ul>
+            </div>
+            <div>
+                <h1 class="font-semibold text-xl mb-3">Dev Tools</h1>
+                <ul class="nav flex flex-col gap-y-3">
+                    <li class="nav-item">
+                        <a href="#">React.js</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="https://stackoverflow.com/">Stack Overflow</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="https://hostingchecker.com/">Hosting Checker</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="https://dnschecker.org/">Dns Checker</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="https://chatgpt.com/">Coding Solutions</a>
+                    </li>
+                </ul>
+            </div>
+            
+        </div>
+    </footer>
+
+    <script src="js/index.js" type="module"></script>
 </body>
+
 </html>
