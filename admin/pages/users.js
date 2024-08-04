@@ -75,10 +75,7 @@ const users = `
                             <div class="form-group col-12">
                                 <label for="course">Course <sup class="text-red-500">*</sup></label>
                                 <select class="form-select" name="course" id="course" multiple>
-                                    <option value="nodejs">NodeJs</option>
-                                    <option value="reactjs">ReactJs</option>
-                                    <option value="js">Javascript</option>
-                                    <option value="python">Python</option>
+                                   
                                 </select>
 
                             </div>
@@ -161,7 +158,7 @@ const users = `
                         </div>
                         <div class="mb-3 form-group">
                             <label for="message">Message</label>
-                            <textarea name="message" id="message"></textarea>
+                            <textarea name="message" id="message" class="form-control"></textarea>
                             </select>
                         </div>
                         <div class="mb-3 form-group">

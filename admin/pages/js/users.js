@@ -1,9 +1,10 @@
-import { registerFn, getDataFunc, formatDateFunc, isConfirmFunc, updateDataFunc } from "../../module/module.js"
+import { registerFn, getDataFunc, formatDateFunc, isConfirmFunc, updateDataFunc,createOptionsFunc } from "../../module/module.js"
 
 export const usersFn = () => {
     let data = getDataFunc()
     // let users=data ? data.users? data.users : [] : []
     let users = data && data.users ? data.users : []
+    let courses = data && data.course ? data.course : []
     let usersMsg = data && data.usersMsg ? data.usersMsg : []
     let usersEl = document.querySelector(".users")
     let modal = usersEl.querySelector("#users-modal")
@@ -48,6 +49,10 @@ export const usersFn = () => {
             togglePBtn.innerHTML = `<i class="fa fa-eye-slash"></i>`
         }
     }
+
+    //show course in form select
+    createOptionsFunc(courses,allFormSelect[1],"name")
+
 
     btnClose.onclick = () => {
         allFormBtn[0].classList.remove("d-none")

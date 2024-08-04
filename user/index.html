@@ -26,12 +26,12 @@
 <body>
     <div class="side-nav active p-4">
         <div class="d-flex flex-column justify-content-center align-items-center">
-            <img src="../assets/images/logo.jpg" width="50" alt="">
-            <h5 class="my-3 font-bold">THE CODING HUB</h5>
+            <img class="profile" src="../assets/images/logo.jpg" width="50" alt="">
+            <h5 class="user-name capitalize my-3 font-bold">THE CODING HUB</h5>
         </div>
         <ul>
             <li class="menu-items active" to="#/"><i class="fa fa-dashboard"></i>Dashboard</li>
-            <li class="menu-items" to="#/logout"><i class="fa fa-right-from-bracket"></i>Logout</li>
+            <li class="menu-items logout-btn" to="#/logout"><i class="fa fa-right-from-bracket"></i>Logout</li>
         </ul>
     </div>
     <div class="page-content active">
@@ -41,7 +41,7 @@
                     <i class="fa fa-align-left"></i>
                 </button>
                 <div class="flex gap-3">
-                    <button class="btn rounded-full bg-green-100 text-green-600">
+                    <button data-bs-toggle="modal" data-bs-target="#user-m-modal" class="user-m-btn btn rounded-full bg-green-100 text-green-600">
                         <i class="fa-regular fa-envelope">
                         </i> </button>
                     <button class="btn rounded-full bg-red-100 text-red-600 position-relative">
@@ -49,14 +49,66 @@
                             <span
                                 class="position-absolute top-0 start-0 translate-middle bg-danger badge rounded-pill">99+</span>
                         </i> </button>
-                    <button class="btn rounded-full bg-red-400 text-white">
-                        A
+                    <button class="btn capitalize letter-name rounded-full bg-red-400 text-white">
                     </button>
                 </div>
             </div>
         </nav>
         <div class="page p-4">
-            
+            <div class="card">
+                <div class="course-list grid md:grid-cols-3 gap-4">
+                   
+                </div>
+            </div>
+        </div>
+        <div class="animate__animated animate__zoomIn modal" id="user-m-modal">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="text-xl font-semibold">Create New Message</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form class="user-m-form">
+                            <div class="mb-3 form-group">
+                                <label for="type">From</label>
+                                <input class="form-control" value="user" readonly type="text" id="type" name="type">
+    
+                                </select>
+                            </div>
+                            <div class="mb-3 form-group">
+                                <label for="name">User Name</label>
+                                <input class="form-control" readonly id="name" name="name">
+    
+                                </select>
+                            </div>
+                            <div class="mb-3 form-group">
+                                <label for="email">User Email</label>
+                                <input class="form-control" readonly id="email" name="email">
+    
+                                </select>
+                            </div>
+                            <div class="mb-3 form-group">
+                                <label for="title">Title</label>
+                                <input class="form-control" id="title" name="title">
+    
+                                </select>
+                            </div>
+                            <div class="mb-3 form-group">
+                                <label for="message">Message</label>
+                                <textarea name="message" id="message" class="form-control"></textarea>
+                                </select>
+                            </div>
+                            <div class="mb-3 form-group">
+                                <button class="btn w-full bg-blue-400 text-white font-semibold">Submit</button>
+                                <button type="button"
+                                    class="d-none btn w-full bg-red-400 text-white font-semibold">Update</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
         <script src="js/index.js" type="module"></script>
 </body>
