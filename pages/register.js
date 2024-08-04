@@ -2,7 +2,7 @@ const register=`
 <div class="register flex justify-center animate__animated animate__zoomIn">
         <div class="w-7/12 bg-white p-4 shadow">
             <h1 class="font-bold text-xl mb-3">Register Now</h1>
-            <form class="users-form">
+            <form class="register-form">
                 <div class="row mb-3">
                     <div class="form-group col-12">
                         <label for="profile">Profile <sup class="text-red-500">*</sup></label>
@@ -62,10 +62,7 @@ const register=`
                     <div class="form-group col-12">
                         <label for="course">Course <sup class="text-red-500">*</sup></label>
                         <select class="form-select" name="course" id="course" multiple>
-                            <option value="nodejs">NodeJs</option>
-                            <option value="reactjs">ReactJs</option>
-                            <option value="js">Javascript</option>
-                            <option value="python">Python</option>
+                           
                         </select>
     
                     </div>
@@ -79,10 +76,14 @@ const register=`
     
                     </div>
                 </div>
+                <input type="radio" name="type" value="user" checked hidden>
                 <div class="mb-3 form-group">
                     <button class="btn w-full bg-blue-400 text-white font-semibold">Submit</button>
                 </div>
             </form>
+            <div class="text-end">
+                <a href="#/login">Already have an account!</a>
+            </div>
            </div>
        </div>
 `

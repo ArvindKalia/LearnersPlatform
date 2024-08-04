@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- start css file link -->
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/animate.min.css">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="../assets/css/tailwind.min.css">
+    <!-- end css file link -->
+    <!-- start js file link -->
+    <script src="../assets/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/js/sweetalert.min.js"></script>
+    <script src="../assets/js/apexcharts.js"></script>
+    <!-- end js file link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <title>Admin Panel</title>
+
+</head>
+
+<body>
+    <div class="side-nav active p-4">
+        <div class="d-flex flex-column justify-content-center align-items-center">
+            <img src="../assets/images/logo.jpg" width="50" alt="">
+            <h5 class="my-3 font-bold">THE CODING HUB</h5>
+        </div>
+        <ul>
+            <li class="menu-items active" to="#/"><i class="fa fa-dashboard"></i>Dashboard</li>
+            <li class="menu-items" to="#/logout"><i class="fa fa-right-from-bracket"></i>Logout</li>
+        </ul>
+    </div>
+    <div class="page-content active">
+        <nav class="navbar sticky-top bg-light shadow-sm">
+            <div class="container-fluid">
+                <button class="btn toggler-btn">
+                    <i class="fa fa-align-left"></i>
+                </button>
+                <div class="flex gap-3">
+                    <button class="btn rounded-full bg-green-100 text-green-600">
+                        <i class="fa-regular fa-envelope">
+                        </i> </button>
+                    <button class="btn rounded-full bg-red-100 text-red-600 position-relative">
+                        <i class="fa-regular fa-bell">
+                            <span
+                                class="position-absolute top-0 start-0 translate-middle bg-danger badge rounded-pill">99+</span>
+                        </i> </button>
+                    <button class="btn rounded-full bg-red-400 text-white">
+                        A
+                    </button>
+                </div>
+            </div>
+        </nav>
+        <div class="page p-4">
+            
+        </div>
+        <script src="js/index.js" type="module"></script>
+</body>
+
+</html>

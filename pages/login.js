@@ -2,7 +2,7 @@ const login=`
 <div class="login flex justify-center animate__animated animate__zoomIn">
         <div class="w-7/12 bg-white p-4 shadow">
             <h1 class="font-bold text-xl mb-3">Login Now</h1>
-            <form class="users-form">
+            <form class="login-form">
                
                 <div class="row mb-3">
                     <div class="form-group col-6">
@@ -25,6 +25,9 @@ const login=`
                     <button class="btn w-full bg-blue-400 text-white font-semibold">Submit</button>
                 </div>
             </form>
+            <div class="text-end">
+                <a href="#/register">Don't have an account!</a>
+            </div>
            </div>
        </div>
 `

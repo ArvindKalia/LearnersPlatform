@@ -29,8 +29,8 @@ export const categoryFunc = () => {
                 readCategory(category)
                 //show category in select
             }, 100)
-            // createOptionsFunc(category, courseCategoryEl, "category")
-            // createOptionsFunc(category, courseCatSEl, "category")
+            createOptionsFunc(category, courseCategoryEl, "category")
+            createOptionsFunc(category, courseCatSEl, "category")
         }
         else {
             swal("Category Exist", "This category already exists!", "warning")
@@ -47,8 +47,8 @@ export const categoryFunc = () => {
                     category.splice(index, 1)
                     updateDataFunc(category, "category")
                     readCategory(category)
-                    // createOptionsFunc(category, courseCategoryEl, "category")
-                    // createOptionsFunc(category, courseCatSEl, "category")
+                    createOptionsFunc(category, courseCategoryEl, "category")
+                    createOptionsFunc(category, courseCatSEl, "category")
                 }
             }
         })
@@ -68,8 +68,8 @@ export const categoryFunc = () => {
                     registerFn(categoryForm, category, "category", index, readCategory)
                     formBtn.click()
                     // window.location.reload()
-                    // createOptionsFunc(category, courseCategoryEl, "category")
-                    // createOptionsFunc(category, courseCatSEl, "category")
+                    createOptionsFunc(category, courseCategoryEl, "category")
+                    createOptionsFunc(category, courseCatSEl, "category")
 
                 }
             }

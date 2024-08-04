@@ -12,14 +12,12 @@ let menuItem = document.querySelectorAll(".menu-items")
 // end toggler coding
 
 //Import routes from pages folder
-
-import register from "../pages/register.js"
-import login from "../pages/login.js"
+import registerFunc from "../pages/register.js"
+import loginFunc from "../pages/login.js"
 import notFound from "../pages/not-found.js"
 
-//Import js-file for routes
-
-// import { dashboardFn } from "../pages/js/dashboard.js"
+import { login } from "../pages/js/login.js"
+import {register} from "../pages/js/register.js"
 // import { usersFn } from "../pages/js/users.js"
 // import { courseFunc,categoryFunc } from "../pages/js/courses.js"
 // import { topicFunc } from "../pages/js/topics.js"
@@ -27,9 +25,9 @@ import notFound from "../pages/not-found.js"
 // import { settingFunc } from "../pages/js/settings.js"
 
 const routes={
-    "/":"",
-    "/register":register,
-    "/login":login
+    "/":"/",
+    "/register":registerFunc,
+    "/login":loginFunc
 
 }
 
@@ -44,6 +42,14 @@ const handleRouteChange = () => {
     if(path=="/")
     {
         // dashboardFn()
+    }
+    else if(path=="/register")
+        {
+        register()
+    }
+    else if(path=="/login")
+        {
+        login()
     }
     
 
